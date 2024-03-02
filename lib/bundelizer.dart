@@ -36,4 +36,46 @@ class Bundelizer {
   UUIDGenerator get generator {
     return _generator;
   }
+
+  static BundleSnapshot decode(Uint8List data) {
+
+    Archive ar = ZipDecoder().decodeBytes(data);
+    final fields = ar.findFile('fields.json');
+    if (fields == null) {
+      return BundleSnapshot();
+    }
+
+    Map<String, dynamic> toReturn = {
+      'blobs': {}
+    };
+    OutputStream os = OutputStream(size: fields.size);
+    fields.writeContent(os);
+    var bytes = os.getBytes();
+    String source = String.fromCharCodes(bytes);
+    var json = jsonDecode(source);
+
+    Map<String, Uint8List> blobs = {};
+    String prefix = 'blobs/';
+    for (var file in ar.files) {
+      //print('${file.name} prefix: $prefix');
+      if (file.isFile && file.name.startsWith(prefix)) {
+
+        String id = file.name.replaceAll(prefix, '');
+        OutputStream os = OutputStream(size: file.size);
+        file.writeContent(os);
+        var bytes = os.getBytes();
+        var data = Uint8List.fromList(bytes);
+        blobs[id] = data;
+      }
+    }
+
+    return BundleSnapshot(fields: json, blobs: blobs);
+  }
+}
+
+class BundleSnapshot {
+  final Object? fields;
+  final Map<String, Uint8List> blobs;
+
+  const BundleSnapshot({this.fields, this.blobs=const {}});
 }
