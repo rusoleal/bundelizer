@@ -1,6 +1,6 @@
 name: bundelizer
-description: "bundelizer"
-version: 0.0.1
+description: Flutter plugin to store/retrieve compressed data in a structured way.
+version: 0.0.2
 repository: https://github.com/rusoleal/bundelizer
 
 environment:
@@ -55,3 +55,7 @@ flutter:
   #
   # For details regarding fonts in packages, see
   # https://flutter.dev/custom-fonts/#from-packages
+
+topics:
+  - persistence
+  - storage
