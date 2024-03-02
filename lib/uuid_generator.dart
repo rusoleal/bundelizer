@@ -2,10 +2,10 @@
 import 'package:uuid/uuid.dart';
 
 class UUIDGenerator {
-  Set<String> _cache = {};
+  final Set<String> _cache = {};
 
   String getUUID() {
-    var uuid = Uuid();
+    var uuid = const Uuid();
     bool finish = false;
 
     String toReturn = uuid.v4();

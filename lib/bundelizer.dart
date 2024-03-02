@@ -9,7 +9,7 @@ class Bundelizer {
 
   ZipEncoder? _encoder;
   OutputStream? _os;
-  UUIDGenerator _generator;
+  final UUIDGenerator _generator;
 
   Bundelizer():_generator=UUIDGenerator();
 
@@ -42,12 +42,9 @@ class Bundelizer {
     Archive ar = ZipDecoder().decodeBytes(data);
     final fields = ar.findFile('fields.json');
     if (fields == null) {
-      return BundleSnapshot();
+      return const BundleSnapshot();
     }
 
-    Map<String, dynamic> toReturn = {
-      'blobs': {}
-    };
     OutputStream os = OutputStream(size: fields.size);
     fields.writeContent(os);
     var bytes = os.getBytes();
