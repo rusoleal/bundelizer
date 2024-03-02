@@ -8,13 +8,12 @@ import 'package:bundelizer/uuid_generator.dart';
 
 /// Main class for bundelize data
 class Bundelizer {
-
   ZipEncoder? _encoder;
   OutputStream? _os;
   final UUIDGenerator _generator;
 
   /// Constructor for bundelizer class
-  Bundelizer():_generator=UUIDGenerator();
+  Bundelizer() : _generator = UUIDGenerator();
 
   /// start bundle process.
   ///
@@ -35,12 +34,12 @@ class Bundelizer {
   ///   Map<>
   void addFields(Object fields) {
     var jsonData = jsonEncode(fields);
-    _encoder?.addFile(ArchiveFile.string('fields.json',jsonData));
+    _encoder?.addFile(ArchiveFile.string('fields.json', jsonData));
   }
 
   /// Add ByteData
   void addBlob(String name, ByteData data) {
-    _encoder?.addFile(ArchiveFile('blobs/$name',0,data));
+    _encoder?.addFile(ArchiveFile('blobs/$name', 0, data));
   }
 
   /// Finish bundelize process.
@@ -60,7 +59,6 @@ class Bundelizer {
   ///
   /// Returns a 'BundleSnapshot' with fields and blobs.
   static BundleSnapshot decode(Uint8List data) {
-
     Archive ar = ZipDecoder().decodeBytes(data);
     final fields = ar.findFile('fields.json');
     if (fields == null) {
@@ -78,7 +76,6 @@ class Bundelizer {
     for (var file in ar.files) {
       //print('${file.name} prefix: $prefix');
       if (file.isFile && file.name.startsWith(prefix)) {
-
         String id = file.name.replaceAll(prefix, '');
         OutputStream os = OutputStream(size: file.size);
         file.writeContent(os);
@@ -101,5 +98,5 @@ class BundleSnapshot {
   final Map<String, Uint8List> blobs;
 
   /// Default constructor
-  const BundleSnapshot({this.fields, this.blobs=const {}});
+  const BundleSnapshot({this.fields, this.blobs = const {}});
 }

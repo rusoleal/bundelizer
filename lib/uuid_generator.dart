@@ -3,7 +3,6 @@ import 'package:uuid/uuid.dart';
 /// UUID Generator used as unique id for bundle store policy.
 /// Internal cache for unique id generator.
 class UUIDGenerator {
-
   /// Local id cache to prevent duplicate uuid's.
   final Set<String> _cache = {};
 
