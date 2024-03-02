@@ -1,3 +1,4 @@
+/// Bundelizer library. Bundle and compress data in a easy way.
 library bundelizer;
 
 import 'dart:convert';
