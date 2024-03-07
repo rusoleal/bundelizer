@@ -33,8 +33,10 @@ class Bundelizer {
   ///   List<>
   ///   Map<>
   void addFields(Object fields) {
-    var jsonData = jsonEncode(fields);
-    _encoder?.addFile(ArchiveFile.string('fields.json', jsonData));
+    //var jsonData = jsonEncode(fields);
+    //_encoder?.addFile(ArchiveFile.string('fields.json', jsonData));
+    var jsonData = JsonUtf8Encoder().convert(fields);
+    _encoder?.addFile(ArchiveFile('fields.json', jsonData.length, jsonData));
   }
 
   /// Add ByteData
@@ -68,8 +70,7 @@ class Bundelizer {
     OutputStream os = OutputStream(size: fields.size);
     fields.writeContent(os);
     var bytes = os.getBytes();
-    String source = String.fromCharCodes(bytes);
-    var json = jsonDecode(source);
+    var json = jsonDecode(utf8.decode(bytes));
 
     Map<String, Uint8List> blobs = {};
     String prefix = 'blobs/';

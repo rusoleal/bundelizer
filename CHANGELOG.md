@@ -1,3 +1,7 @@
+## 0.0.6
+
+* Load/Store json in utf-8 encoding
+
 ## 0.0.5
 
 * Remove flutter dependencies. Pure dart compatible
