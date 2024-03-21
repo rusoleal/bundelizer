@@ -47,9 +47,9 @@ class Bundelizer {
   /// Finish bundelize process.
   ///
   /// Returns compressed buffer in order to store it.
-  List<int> finish() {
+  Uint8List finish() {
     _encoder?.endEncode();
-    return _os!.getBytes();
+    return Uint8List.fromList(_os!.getBytes());
   }
 
   /// get uuid generator in order to store blobs with unique id

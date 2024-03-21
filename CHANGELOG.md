@@ -1,3 +1,7 @@
+## 0.0.7
+
+* Change List<int> to Uint8List
+
 ## 0.0.6
 
 * Load/Store json in utf-8 encoding
