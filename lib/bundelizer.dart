@@ -40,7 +40,7 @@ class Bundelizer {
   }
 
   /// Add ByteData
-  void addBlob(String name, ByteData data) {
+  void addBlob(String name, Uint8List data) {
     _encoder?.addFile(ArchiveFile('blobs/$name', 0, data));
   }
 

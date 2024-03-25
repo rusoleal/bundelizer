@@ -1,3 +1,7 @@
+## 0.0.8
+
+* Inputs and outputs as Uint8List buffers
+
 ## 0.0.7
 
 * Change List<int> to Uint8List
