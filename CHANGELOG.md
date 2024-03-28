@@ -1,3 +1,7 @@
+## 0.0.9
+
+* [fix] clear generator cache
+
 ## 0.0.8
 
 * Inputs and outputs as Uint8List buffers

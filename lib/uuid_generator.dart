@@ -22,4 +22,9 @@ class UUIDGenerator {
 
     return toReturn;
   }
+
+  /// clear cache
+  void clearCache() {
+    _cache.clear();
+  }
 }
