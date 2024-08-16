@@ -1,3 +1,8 @@
+## 0.1.0
+
+* [fix] update dependencies
+
+
 ## 0.0.9
 
 * [fix] clear generator cache
